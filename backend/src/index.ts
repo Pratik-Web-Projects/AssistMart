@@ -3,6 +3,7 @@ import cors from 'cors';
 import { clerkMiddleware } from '@clerk/express'
 import { clerkWebhookHandler } from './webhooks/clerk';
 import { getEnv } from './lib/env';
+import keepAliveCron from "./lib/cron";
 
 import fs from "node:fs";
 import path from "node:path";
@@ -46,4 +47,9 @@ if (fs.existsSync(publicDir)) {
 }
 
 
-app.listen(env.PORT, ()=> console.log(`listen at ${env.PORT}`));
+app.listen(env.PORT, () => {
+  console.log("Listening on port:", env.PORT);
+  if (env.NODE_ENV === "production") {
+    keepAliveCron.start();
+  }
+});
