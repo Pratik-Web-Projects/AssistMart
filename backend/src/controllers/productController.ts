@@ -23,7 +23,7 @@ export async function listProducts(req: Request, res:Response, next: NextFunctio
 
 }
 
-export async function getCategories(req: Request, res:Response, next: NextFunction){
+export async function getCategories(_req: Request, res:Response, next: NextFunction){
 try{
     const rows = await db.select({category: products.category}).
                             from(products).where(eq(products.active, true));
