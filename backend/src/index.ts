@@ -8,6 +8,8 @@ import meRouter from './routes/meRouter';
 import productRouter from './routes/productRouter';
 import streamRouter from './routes/streamRouter';
 import checkoutRouter from './routes/checkoutRotuer';
+import adminRouter from './routes/AdminRouter';
+import orderRouter from './routes/orderRoutes';
 
 
 import fs from "node:fs";
@@ -43,6 +45,9 @@ app.use('/api/me', meRouter);
 app.use('/api/products', productRouter);
 app.use('/api/stream', streamRouter);
 app.use('/api/checkout', checkoutRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api/orders', orderRouter);
+
 
 const publicDir = path.join(process.cwd(), "public");
 if (fs.existsSync(publicDir)) {
